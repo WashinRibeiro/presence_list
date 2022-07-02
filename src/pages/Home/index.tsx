@@ -2,10 +2,15 @@ import "./styles.css";
 import { Card } from "../../components/Card";
 import { useState, useEffect } from "react";
 
+interface User {
+  name: string;
+  avatar: string;
+}
+
 export function Home() {
-  const [studentName, setStudentName] = useState();
-  const [students, setStudents] = useState([]);
-  const [user, setUser] = useState({ name: "", avatar: "" });
+  const [studentName, setStudentName] = useState('');
+  const [students, setStudents] = useState<any| []>([])
+  const [user, setUser] = useState<User>({name: '', avatar: ''});
 
   function handleAddStudent() {
     const newStudent = {
@@ -18,14 +23,14 @@ export function Home() {
     };
 
     if (newStudent.name !== '' || newStudent.name !== null) {
-      setStudents((prevState) => [...prevState, newStudent]);
+      setStudents((prevState: any) => [...prevState, newStudent]);
     } else {
       console.log('Erro')
     }
   }
 
   useEffect(() => {
-    fetch("https://api.github.com/users/washinRibeiro")
+    fetch("https://api.github.com/users/kevin")
       .then((response) => response.json())
       .then((data) => {
         setUser({
@@ -57,7 +62,7 @@ export function Home() {
         Adicionar
       </button>
 
-      {students.map((student) => (
+      {students.map((student: any) => (
         <Card key={student.time} name={student.name} time={student.time} />
       ))}
     </div>
