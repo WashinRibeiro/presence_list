@@ -30,7 +30,7 @@ export function Home() {
   }
 
   useEffect(() => {
-    fetch("https://api.github.com/users/kevin")
+    fetch("https://api.github.com/users/washinRibeiro")
       .then((response) => response.json())
       .then((data) => {
         setUser({
